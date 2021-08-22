@@ -1,3 +1,5 @@
+# Bayer-free-state-website
+=======
 # Bayer Free State government website
 
 # For developer
@@ -7,4 +9,4 @@
         - comp: components will be render 
         - scrip: contains client js files
         - style: css files
-    - `index.js`: entry point for server
+
