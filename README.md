@@ -4,9 +4,8 @@
 
 # For developer
 - src: every code is in this folder
-    - page: html files
-    - public: files will be served on `/public`
+    - root: client files
         - comp: components will be render 
-        - scrip: contains client js files
-        - style: css files
+        - page: html files (in client url there will be no `.html` extention)
+        - public: files will be served on `/public` url
 
