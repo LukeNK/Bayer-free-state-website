@@ -3,6 +3,8 @@ const express = require('express');
 const fs = require('fs');
 var app = express();
 
+const port = process.env.listenPort || 8080;
+
 /**
  * Render template and serve html files
  * @param {String} fName Local file name
@@ -44,6 +46,6 @@ app.get('/:name', (req, res) => {
     })
 });
 
-app.listen(process.env.listenPort, () => {
-    console.warn('Listening at port ' + process.env.listenPort);
+app.listen(port, () => {
+    console.warn(`Listening at port ${port}.`);
 })
