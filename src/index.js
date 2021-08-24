@@ -3,8 +3,6 @@ const express = require('express');
 const fs = require('fs');
 var app = express();
 
-const port = process.env.listenPort || 8080;
-
 /**
  * Render template and serve html files
  * @param {String} fName Local file name
@@ -20,7 +18,7 @@ function serveFile(fName, callback) {
             name = name.substr(2, name.length - 4);
             fs.readFile('./root/comp/' + name, 'utf8', (err, dat) => {
                 if (err) { console.warn(err); }
-                data = data.replace(/{{(.*?)}}/g, dat);
+                data = data.replace(RegExp(`{{${name}}}`, 'g'), dat);
                 count--;
                 if (!count) callback(data);
             });
@@ -29,7 +27,7 @@ function serveFile(fName, callback) {
 }
 
 app.get('/', (req, res) => {
-    serveFile('./page/doc/constitution.html', (data) => {
+    serveFile('./root/pages/index.html', (data) => {
         res.send(data);
     })
 });
@@ -41,11 +39,11 @@ app.use('/public', express.static('root/public'));
 app.get('/:name', (req, res) => {
     // pages (no .html)
     serveFile('./root/pages/' + req.params.name + '.html', (data, err) => {
-        if (err) { res.redirect('/404'); return }
+        if (err && req.params.name !== '404') { res.redirect('/404'); return }
         res.send(data);
     })
 });
 
-app.listen(port, () => {
-    console.warn(`Listening at port ${port}.`);
+app.listen(process.env.listenPort, () => {
+    console.warn(`Listening at port ${process.env.listenPort}.`);
 })

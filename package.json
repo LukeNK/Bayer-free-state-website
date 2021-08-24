@@ -1,19 +1,19 @@
 {
-  "name": "bayer-free-state-website",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./src/index.js",
-  "scripts": {
-    "start": "node src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LukeNk/Bayer-free-state-website"
-  },
-  "author": "LukeNk",
-  "license": "",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1"
-  }
+    "name": "bayer-free-state-website",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/index.js",
+    "scripts": {
+        "start": "node src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/LukeNk/Bayer-free-state-website"
+    },
+    "author": "LukeNk",
+    "license": "",
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1"
+    }
 }
