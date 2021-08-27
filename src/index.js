@@ -10,23 +10,25 @@ var app = express();
  */
 function serveFile(fName, callback) {
     fs.readFile(fName, 'utf8', (err, data) => {
-        if (err) {
-            callback(null, err);
-            return;
-        }
+        if (err) return callback(null, err);
         let req = data.match(/{{(.*?)}}/g);
-        if (!req) {
-            callback(data);
-            return;
-        }
+
+        if (!req) return callback(data);
         let count = req.length;
+
         for (let name of req) {
             name = name.substr(2, name.length - 4);
             fs.readFile('./root/comp/' + name, 'utf8', (err, dat) => {
+<<<<<<< Updated upstream
                 if (err) {
                     console.warn(err);
                 }
                 data = data.replace(RegExp(`{{${name}}}`, 'g'), dat);
+=======
+                if (err) console.warn(err);
+
+                data = data.replace(/{{(.*?)}}/g, dat);
+>>>>>>> Stashed changes
                 count--;
                 if (!count) callback(data);
             });
