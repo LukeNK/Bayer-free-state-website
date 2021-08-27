@@ -19,10 +19,9 @@ function serveFile(fName, callback) {
         for (let name of req) {
             name = name.substr(2, name.length - 4);
             fs.readFile('./root/comp/' + name, 'utf8', (err, dat) => {
-                if (err) console.warn(err);
-
-                data = data.replace(RegExp(`{{${name}}}`, 'g'), dat);
                 count--;
+                if (err) return console.warn(err);
+                data = data.replace(RegExp(`{{${name}}}`, 'g'), dat || '');
                 if (!count) callback(data);
             });
         }
@@ -42,10 +41,7 @@ app.use('/public', express.static('root/public'));
 app.get('/:name', (req, res) => {
     // pages (no .html)
     serveFile('./root/pages/' + req.params.name + '.html', (data, err) => {
-        if (err && req.params.name !== '404') {
-            res.redirect('/404');
-            return;
-        }
+        if (err && req.params.name !== '404') return res.redirect('/404');
         res.send(data);
     });
 });
