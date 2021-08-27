@@ -19,16 +19,9 @@ function serveFile(fName, callback) {
         for (let name of req) {
             name = name.substr(2, name.length - 4);
             fs.readFile('./root/comp/' + name, 'utf8', (err, dat) => {
-<<<<<<< Updated upstream
-                if (err) {
-                    console.warn(err);
-                }
-                data = data.replace(RegExp(`{{${name}}}`, 'g'), dat);
-=======
                 if (err) console.warn(err);
 
-                data = data.replace(/{{(.*?)}}/g, dat);
->>>>>>> Stashed changes
+                data = data.replace(RegExp(`{{${name}}}`, 'g'), dat);
                 count--;
                 if (!count) callback(data);
             });
