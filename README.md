@@ -22,8 +22,8 @@ Currently under development.
         - `comp`: html components.
         - `page`: html files (in client url there will be no `.html` extention)
         - `public`: assets files that will be served on `/public` url.
-    - [.env](https://www.npmjs.com/package/dotenv): set environment variables
-        - `listenPort` (default is `8080`)
+    - [.env](https://www.npmjs.com/package/dotenv) **(important)**: set environment variables
+        - `listenPort` (`8080` is preferred)
     - `config.json`: general client configs.
     - `index.js`: server js file.
 

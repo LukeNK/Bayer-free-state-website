@@ -46,6 +46,6 @@ app.get('/:name', (req, res) => {
     });
 });
 
-app.listen(process.env.listenPort, () => {
-    console.warn(`Listening at port ${process.env.listenPort}.`);
+app.listen(process.env.PORT, () => {
+    console.warn(`Listening at port ${process.env.PORT}.`);
 });
