@@ -13,9 +13,8 @@ Currently under development.
 
 - Start by installing dependencies with `npm ci` in `src` directory.
 > `npm ci` are recommended over `npm install` for setting up packages to avoid lock file conflicts.
-- For Visual Studio Code users, you can simply press `F5` to start server.
-- If you are not using Visual Studio Code, start by change directory to `/src` then run the server with `node index.js`. Please verify your working directory is `/src` else pages and components won't load properly.
-> Currently the command `npm start` won't work because of command separator conflict between Bash and Batch.
+- `npm start` in terminal to start server, for Visual Studio Code users, you can simply press `F5`.
+- If that didn't work, start by changing working directory to `src/` with `cd src` then run the server with `node index.js`. Verify that the working directory is `src/` else pages and components won't load properly.
 
 ## Directory and File System
 - `src`: source code folder
