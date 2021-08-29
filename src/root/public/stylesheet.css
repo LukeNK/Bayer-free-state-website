@@ -1,4 +1,6 @@
-:root {
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -19,4 +21,64 @@ button {
 a:link,
 a:visited {
     text-decoration: none;
+}
+
+.navbar {
+    background-color: #212529;
+    display: flex;
+    /* padding: 1.5vh 0; */
+    padding: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+    color: #f8f9fa;
+}
+
+.nav-links a {
+    text-decoration: none !important;
+    color: #f8f9fa;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-links {
+    /* border: 1px solid #fff; */
+    display: flex;
+    width: 45vh;
+    justify-content: space-between;
+}
+
+/* .left {
+    margin-left: 20px;
+    border: 1px solid #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+} */
+
+.logo {
+    /* border: 1px solid #fff; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+    margin-left: 10px;
+}
+
+#logo-titles {
+    color: #868e96;
+    font-style: italic;
+    font-family: 'Poppins', sans-serif;
+    width: 30%;
+    line-height: 20px;
+}
+
+.menu {
+    /* border: 1px solid #fff; */
+    margin-right: 20px;
+    font-size: 50px;
+}
+
+.menu:hover {
+    cursor: pointer;
 }
