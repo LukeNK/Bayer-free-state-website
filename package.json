@@ -1,10 +1,10 @@
 {
     "name": "bayer-free-state-website",
     "version": "1.0.0",
-    "description": "",
-    "main": "./src/index.js",
+    "description": "The official website of the Bayer Free State Discord Server.",
+    "main": "src/index.js",
     "scripts": {
-        "start": "node src/index.js"
+        "start": "cd src && node index.js"
     },
     "repository": {
         "type": "git",
