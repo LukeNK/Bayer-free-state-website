@@ -13,23 +13,25 @@ Currently under development.
 
 - Start by installing dependencies with `npm ci` in `src` directory.
 > `npm ci` are recommended over `npm install` for setting up packages to avoid lock file conflicts.
+- Create `.env` file in the `src/` directory and put `PORT=8000`
+> You can change `PORT=YOURPORTNUMBER` to whatever fits.
 - `npm start` in terminal to start server, for Visual Studio Code users, you can simply press `F5`.
-- If that didn't work, start by changing working directory to `src/` with `cd src` then run the server with `node index.js`. Verify that the working directory is `src/` else pages and components won't load properly.
+- If that didn't work, change directory to `src/` by using `cd src/` and then run `node index` instead. Verify that the working directory is `src/` else pages and components won't load properly.
 
 ## Directory and File System
-- `src`: source code folder
-    - `root`: client files
-        - `comp`: html components.
-        - `page`: html files (in client url there will be no `.html` extention)
-        - `public`: assets files that will be served on `/public` url.
+- `src`: Source code folder
+    - `root`: Client files
+        - `comp`: HTML components
+        - `page`: HTML files (in client url there will be no `.html` extention)
+        - `public`: Assets files that will be served on `/public` url
     - [.env](https://www.npmjs.com/package/dotenv) **(important)**: set environment variables
-        - `listenPort` (`8080` is preferred)
-    - `config.json`: general client configs.
-    - `index.js`: server js file.
+        - `PORT` (You can set whatever port you like)
+    - `config.json`: General client's configs
+    - `index.js`: Server file
 
 [.env]: https://www.npmjs.com/package/dotenv
 [Discord Invite]: https://img.shields.io/badge/discord-invite-5662F6
-[Version]: https://img.shields.io/badge/version-0.1.0-FF0000 
+[Version]: https://img.shields.io/badge/version-0.1.2-FF0000 
 <!--- 
     remember to update version every update
 --->
