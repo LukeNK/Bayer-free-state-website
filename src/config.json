@@ -1,1 +1,11 @@
-{}
+{
+    "links": {
+        "contributors": "https://github.com/LukeNk/Bayer-free-state-website/graphs/contributors",
+        "discord": "https://discord.gg/eDfH73F",
+        "github": "https://github.com/LukeNk/Bayer-free-state-website"
+    },
+    "ddos": {
+        "routeTimeout": 1000,
+        "routeMaxcount": 50
+    }
+}

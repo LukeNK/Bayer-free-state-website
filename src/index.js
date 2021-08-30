@@ -1,7 +1,10 @@
 require('dotenv').config();
-const express = require('express');
 const fs = require('fs');
+const config = require('./config.json');
+const express = require('express');
 var app = express();
+
+let ROUTECOUNT = {} // each URL count for DDOS prevention
 
 /**
  * Render template and serve html files
@@ -20,18 +23,35 @@ function serveFile(fName, callback) {
             name = name.substr(2, name.length - 4);
             fs.readFile('./root/comp/' + name, 'utf8', (err, dat) => {
                 count--;
-                if (err) return console.warn(err);
                 data = data.replace(RegExp(`{{${name}}}`, 'g'), dat || '');
+                if (err) return console.warn(err);
                 if (!count) callback(data);
             });
         }
     });
 }
 
+app.use((req, res, next) => {
+    // Basic DDOS prevent
+    if (req.url == '/404') return next();
+    if (!ROUTECOUNT[req.url]) ROUTECOUNT[req.url] = 0;
+    if (ROUTECOUNT[req.url] <= config.ddos.routeMaxcount) {
+        ROUTECOUNT[req.url]++;
+        setTimeout(() => { ROUTECOUNT[req.url]-- }, config.ddos.routeTimeout);
+        next();
+    } else return res.redirect(404, '/404');
+});
+
 app.get('/', (req, res) => {
     serveFile('./root/pages/index.html', (data) => {
         res.send(data);
     });
+});
+
+app.get('/link/:name', (req, res) => {
+    try { res.redirect(config.links[req.params.name]) } catch (err) {
+        res.redirect('/404')
+    }
 });
 
 app.post('/API/*', (req, res) => {});
