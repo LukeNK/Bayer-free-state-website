@@ -43,7 +43,7 @@ a:visited {
 .nav-links {
     /* border: 1px solid #fff; */
     display: flex;
-    width: 45vh;
+    width: 47vh;
     justify-content: space-between;
 }
 
