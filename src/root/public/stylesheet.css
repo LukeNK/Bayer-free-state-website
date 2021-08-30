@@ -43,7 +43,7 @@ a:visited {
 .nav-links {
     /* border: 1px solid #fff; */
     display: flex;
-    width: 47vh;
+    width: 400px;
     justify-content: space-between;
 }
 
@@ -81,4 +81,44 @@ a:visited {
 
 .menu:hover {
     cursor: pointer;
+}
+
+#sideMenu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #212529;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+#sideMenu a {
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #adb5bd;
+    display: block;
+    transition: 0.15s;
+}
+
+#sideMenu a:hover {
+    color: #f8f9fa;
+}
+
+#sideMenu .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  #sideMenu {padding-top: 15px;}
+  #sideMenu a {font-size: 18px;}
 }
