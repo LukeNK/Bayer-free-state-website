@@ -58,9 +58,9 @@ app.post('/API/*', (req, res) => {});
 
 app.use('/public', express.static('root/public'));
 
-app.get('/:name', (req, res) => {
+app.get('*', (req, res) => {
     // pages (no .html)
-    serveFile('./root/pages/' + req.params.name + '.html', (data, err) => {
+    serveFile('./root/pages/' + req.url + '.html', (data, err) => {
         if (err && req.params.name !== '404') return res.redirect('/404');
         res.send(data);
     });

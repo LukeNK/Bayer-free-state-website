@@ -1,16 +1,21 @@
 {
     "name": "bayer-free-state-website",
-    "version": "1.0.0",
+    "version": "0.1.2",
     "description": "The official website of the Bayer Free State Discord Server.",
     "main": "src/index.js",
     "scripts": {
-        "start": "cd src && node index.js"
+        "start": "cd src && node index.js",
+        "test": "cd src && node test.js"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/LukeNk/Bayer-free-state-website"
     },
-    "author": "LukeNk",
+    "author": "Luke NK <work.lukenguyenkhanh@gmail.com> (http://lukenk.repl.co/)",
+    "contributors": [
+        "Jariez",
+        "Oofie"
+    ],
     "license": "",
     "dependencies": {
         "dotenv": "^10.0.0",

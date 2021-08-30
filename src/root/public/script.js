@@ -1,3 +1,10 @@
+function getData(url, callback) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', url);
+    xhttp.send();
+    xhttp.onload = function() { callback(this.responseText) }
+}
+
 function getCookie(cname) {
     let name = cname + '=';
     let decodedCookie = decodeURIComponent(document.cookie);
