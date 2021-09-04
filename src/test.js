@@ -10,7 +10,7 @@ script.on('error', (code) => {
     console.warn('Error found code ' + code);
 });
 script.on('exit', (code, signal) => {
-    console.log('Script exited with code ' + code)
+    console.log('Script exited with code ' + code);
 });
 
 setTimeout(() => {
@@ -20,8 +20,7 @@ setTimeout(() => {
     console.log(`[INFO] Begin test with ${testCount} test(s)`);
 
     testEnd(
-        fs.readFileSync('../README.md', 'utf-8') &&
-        fs.readFileSync('../package.json', 'utf-8'),
+        fs.readFileSync('../README.md', 'utf-8') && fs.readFileSync('../package.json', 'utf-8'),
         'README and package.json test (exist and loaded)'
     );
 
@@ -32,22 +31,24 @@ setTimeout(() => {
     });
 
     (function() {
-        http.get(baseUrl + "/public/script.js", (res) => {
+        http.get(baseUrl + '/public/script.js', (res) => {
             let data = '';
-            res.on('data', (chunk) => { data += chunk });
-            res.on('end', () => {
-                testEnd(data == fs.readFileSync('./root/public/script.js', 'utf-8'),
-                    '"/public/script.js" content mactch'
-                )
+            res.on('data', (chunk) => {
+                data += chunk;
             });
-
-        })
+            res.on('end', () => {
+                testEnd(
+                    data == fs.readFileSync('./root/public/script.js', 'utf-8'),
+                    '"/public/script.js" content mactch'
+                );
+            });
+        });
     })();
 
     (function() {
-        http.get(baseUrl + "/comp/head.html", (res) => {
-            testEnd(res.statusCode == 302, 'Data leak test on "/comp"')
-        })
+        http.get(baseUrl + '/comp/head.html', (res) => {
+            testEnd(res.statusCode == 302, 'Data leak test on "/comp"');
+        });
     })();
 
     /**
@@ -57,10 +58,11 @@ setTimeout(() => {
      */
     function testEnd(result, msg) {
         if (result) {
-            console.log('[PASS] ' + msg);
+            console.log('[PASSED] ' + msg);
             testResult++;
-        } else {
-            console.error('[FAIL] ' + msg);
+        }
+        else {
+            console.error('[FAILED] ' + msg);
             failedTest = failedTest + msg + '\n';
         }
         testCount--;
@@ -69,7 +71,7 @@ setTimeout(() => {
             console.log(`----------[REPORT]----------
 ${testResult} tests passed
 Failed test:
-${(failedTest) ? failedTest : 'None'}`);
+${failedTest ? failedTest : 'None'}`);
             if (failedTest) process.exit(1);
             process.exit();
         }

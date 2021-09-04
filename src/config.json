@@ -4,8 +4,8 @@
         "discord": "https://discord.gg/eDfH73F",
         "github": "https://github.com/LukeNk/Bayer-free-state-website"
     },
-    "ddos": {
-        "routeTimeout": 1000,
-        "routeMaxcount": 50
+    "rateLimit": {
+        "timeout": 10000,
+        "maxCount": 50
     }
 }

@@ -2,9 +2,12 @@ require('dotenv').config();
 const fs = require('fs');
 const config = require('./config.json');
 const express = require('express');
-var app = express();
+const app = express();
+const router = express.Router();
 
-let ROUTECOUNT = {} // each URL count for DDOS prevention
+// let ROUTECOUNT = {}; // each URL count for DDOS prevention
+let BLOCKED_LIST = [];
+let IP_LIST = {};
 
 /**
  * Render template and serve html files
@@ -31,16 +34,33 @@ function serveFile(fName, callback) {
     });
 }
 
-app.use((req, res, next) => {
-    // Basic DDOS prevent
-    if (req.url == '/404') return next();
-    if (!ROUTECOUNT[req.url]) ROUTECOUNT[req.url] = 0;
-    if (ROUTECOUNT[req.url] <= config.ddos.routeMaxcount) {
-        ROUTECOUNT[req.url]++;
-        setTimeout(() => { ROUTECOUNT[req.url]-- }, config.ddos.routeTimeout);
-        next();
-    } else return res.redirect(404, '/404');
+router.use((req, res, next) => {
+    if (req.url === '/403') return next();
+
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    if (!IP_LIST[ip]) IP_LIST[ip] = 0;
+
+    if (IP_LIST[ip] <= config.rateLimit.maxCount) {
+        IP_LIST[ip]++;
+        console.log(IP_LIST[ip]);
+        console.log(`IP: ${ip}, URL: ${req.url}`);
+        // setTimeout(() => {
+        //     IP_LIST[ip]--;
+        // }, config.rateLimit.timeout);
+    }
+    else return res.redirect(403, '/403');
+
+    next();
 });
+
+app.use(router);
+
+// clear bans
+setInterval(() => {
+    for (const [ key, _ ] of Object.entries(IP_LIST)) {
+        IP_LIST[key] = 0;
+    }
+}, config.rateLimit.timeout);
 
 app.get('/', (req, res) => {
     serveFile('./root/pages/index.html', (data) => {
@@ -49,8 +69,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/link/:name', (req, res) => {
-    try { res.redirect(config.links[req.params.name]) } catch (err) {
-        res.redirect('/404')
+    try {
+        res.redirect(config.links[req.params.name]);
+    } catch (err) {
+        res.redirect('/404');
     }
 });
 
