@@ -1,8 +1,12 @@
-function getData(url, callback) {
+function getData(url, data, callback) {
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', url);
-    xhttp.send();
-    xhttp.onload = function() { callback(this.responseText) }
+    xhttp.open((data)? 'POST' : 'GET', url);
+    xhttp.send((data)? data : '');
+    xhttp.onload = function() { 
+        if (this.status == 200) {
+            callback(this.responseText)
+        } else callback(null, this.status);
+    }
 }
 
 function getCookie(cname) {

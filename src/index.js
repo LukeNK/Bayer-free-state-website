@@ -76,7 +76,24 @@ app.get('/link/:name', (req, res) => {
     }
 });
 
-app.post('/API/*', (req, res) => {});
+
+app.post('/API/statute', (req, res) => {
+    let inData = ''
+    req.on('data', (c) => { inData += c })
+    req.on('end', () => {
+        https.get(path.join(config.links.statueBase, data), (res2) => {
+            let outData = '';
+            res2.on('data', (c) => { outData += c });
+            res2.on('end', () => {
+                res.send(outData);
+            });
+            res2.on('error', () => {
+                res.sendStatus(404);
+                res.send('')
+            })
+        })
+    })
+});
 
 app.use('/public', express.static('root/public'));
 
