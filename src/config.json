@@ -1,1 +1,12 @@
-{}
+{
+    "links": {
+        "contributors": "https://github.com/LukeNk/Bayer-free-state-website/graphs/contributors",
+        "discord": "https://discord.gg/eDfH73F",
+        "github": "https://github.com/LukeNk/Bayer-free-state-website",
+        "statueBase": "https://raw.githubusercontent.com/callmepeterz/BayerFreeStateStatutes/master/bot.json"
+    },
+    "rateLimit": {
+        "timeout": 10000,
+        "maxCount": 50
+    }
+}
